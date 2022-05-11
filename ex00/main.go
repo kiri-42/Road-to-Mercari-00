@@ -9,6 +9,8 @@ import (
 	"img"
 )
 
+type err error
+
 func main() {
 	args := os.Args
 	// 引数チェック
@@ -34,7 +36,7 @@ func main() {
 	}
 }
 
-func checkArg(args []string) error {
+func checkArg(args []string) err {
 	if len(args) != 2 {
 		return errors.New("error: invalid argument")
 	}
@@ -46,7 +48,7 @@ func checkArg(args []string) error {
 	return nil
 }
 
-func getPaths(dir string) ([]string, error) {
+func getPaths(dir string) ([]string, err) {
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
 		return nil, err
