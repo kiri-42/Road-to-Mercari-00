@@ -49,13 +49,13 @@ func checkArg(args []string) error {
 func getPaths(dir string) ([]string, error) {
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
-		return nil, errors.New("error")
+		return nil, err
 	}
 
 	var paths []string
 	for _, file := range files {
 		if file.IsDir() {
-			return nil, errors.New("error")
+			return nil, errors.New("error: " + file.Name() + " is not a valid file")
 		}
 		path := filepath.Join(dir, file.Name())
 		if err := img.CheckPng(path); err != nil {
