@@ -13,7 +13,6 @@ func main() {
 	args := os.Args
 	// 引数チェック
 	if err := checkArg(args); err != nil {
-		println("flag2")
 		println(err.Error())
 		return
 	}
