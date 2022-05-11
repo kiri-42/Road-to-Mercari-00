@@ -1,4 +1,4 @@
-package convert
+package img
 
 import (
 	"image"
@@ -23,7 +23,7 @@ func ConvertJpgToPng(path string) error {
 	}
 
 	// 変換先のファイルパスを取得
-	pngPath := ConvertExtension(path, "jpg", "png")
+	pngPath := convertExtension(path, "jpg", "png")
 
 	// 変換先のファイルを作成
 	f2, err := os.Create(pngPath)
@@ -45,7 +45,7 @@ func ConvertJpgToPng(path string) error {
 	return nil
 }
 
-func ConvertExtension(path, fromExt, toExt string) string {
+func convertExtension(path, fromExt, toExt string) string {
 	r := strings.Replace(reverse(path), reverse(fromExt), reverse(toExt), 1)
 	return reverse(r)
 }

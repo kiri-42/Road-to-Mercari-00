@@ -5,9 +5,8 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"strings"
 
-	"convert"
+	"img"
 )
 
 func main() {
@@ -29,7 +28,7 @@ func main() {
 
 	// 画像変換処理
 	for _, path := range paths {
-		if err := convert.ConvertJpgToPng(path); err != nil {
+		if err := img.ConvertJpgToPng(path); err != nil {
 			println(err.Error())
 			return
 		}
@@ -60,17 +59,10 @@ func getPaths(dir string) ([]string, error) {
 			return nil, errors.New("error")
 		}
 		path := filepath.Join(dir, file.Name())
-		if err := checkExtension(path); err != nil {
+		if err := img.CheckPng(path); err != nil {
 			return nil, err
 		}
 		paths = append(paths, path)
 	}
 	return paths, nil
-}
-
-func checkExtension(path string) error {
-	if strings.HasSuffix(path, "jpg") {
-		return nil
-	}
-	return errors.New("error: " + path + " is not a valid file")
 }
