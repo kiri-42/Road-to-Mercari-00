@@ -1,9 +1,10 @@
+// 画像処理関連のパッケージ
 package img
 
 import (
 	"image"
 	"image/png"
-	"image/jpeg"
+	_ "image/jpeg"
 	"os"
 	"strings"
 )
@@ -31,10 +32,6 @@ func ConvertJpgToPng(path string) error {
 		return err
 	}
 	defer f2.Close()
-
-	if pngPath == "jpg" {
-		jpeg.Encode(f2, img, &jpeg.Options{})
-	}
 
 	// 画像オブジェクトをpng形式にエンコード
 	err = png.Encode(f2, img)
