@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"img"
+	"imgconv"
 )
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 
 	// 画像変換処理
 	for _, path := range paths {
-		if err := img.ConvertJpgToPng(path); err != nil {
+		if err := imgconv.ConvertJpgToPng(path); err != nil {
 			println(err.Error())
 			return
 		}
@@ -58,7 +58,7 @@ func getPaths(dir string) ([]string, error) {
 			return nil, errors.New("error: " + file.Name() + " is not a valid file")
 		}
 		path := filepath.Join(dir, file.Name())
-		if err := img.CheckPng(path); err != nil {
+		if err := imgconv.CheckPng(path); err != nil {
 			return nil, err
 		}
 		paths = append(paths, path)

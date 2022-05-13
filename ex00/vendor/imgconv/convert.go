@@ -1,5 +1,5 @@
 // 画像処理関連のパッケージ
-package img
+package imgconv
 
 import (
 	"image"

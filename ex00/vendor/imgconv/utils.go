@@ -1,4 +1,4 @@
-package img
+package imgconv
 
 func reverse(s string) string {
 	runes := []rune(s)
