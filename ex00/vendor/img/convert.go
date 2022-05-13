@@ -9,9 +9,17 @@ import (
 	"strings"
 )
 
-func ConvertJpgToPng(path string) error {
+type filePath struct {
+	jpg string
+	png string
+}
+
+func ConvertJpgToPng(jpg string) error {
+	fp := new(filePath)
+	fp.jpg = jpg
+
 	// 変換元ファイルを開く
-	f, err := os.Open(path)
+	f, err := os.Open(fp.jpg)
 	if err != nil {
 		return err
 	}
@@ -24,10 +32,10 @@ func ConvertJpgToPng(path string) error {
 	}
 
 	// 変換先のファイルパスを取得
-	pngPath := convertExtension(path, "jpg", "png")
+	fp.png = convertExtension(fp.jpg, "jpg", "png")
 
 	// 変換先のファイルを作成
-	f2, err := os.Create(pngPath)
+	f2, err := os.Create(fp.png)
 	if err != nil {
 		return err
 	}
