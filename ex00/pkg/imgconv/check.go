@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// 引数の拡張子がpngか確認する関数
 func CheckPng(path string) error {
 	if strings.HasSuffix(path, "jpg") {
 		return nil

@@ -1,4 +1,6 @@
-// 画像処理関連のパッケージ
+/*
+画像変換関連の関数をまとめたパッケージです
+*/
 package imgconv
 
 import (
@@ -14,6 +16,7 @@ type filePath struct {
 	png string
 }
 
+// jpgファイルをpngファイルに変換する関数
 func ConvertJpgToPng(jpg string) error {
 	fp := new(filePath)
 	fp.jpg = jpg
