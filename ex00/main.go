@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -13,7 +14,7 @@ func main() {
 	args := os.Args
 	// 引数チェック
 	if err := checkArg(args); err != nil {
-		println(err.Error())
+		fmt.Fprintln(os.Stderr, err.Error())
 		return
 	}
 
@@ -21,14 +22,14 @@ func main() {
 	// 画像ファイルのpathを取得
 	paths, err := getPaths(dir)
 	if err != nil {
-		println(err.Error())
+		fmt.Fprintln(os.Stderr, err.Error())
 		return
 	}
 
 	// 画像変換処理
 	for _, path := range paths {
 		if err := imgconv.ConvertJpgToPng(path); err != nil {
-			println(err.Error())
+			fmt.Fprintln(os.Stderr, err.Error())
 			return
 		}
 	}

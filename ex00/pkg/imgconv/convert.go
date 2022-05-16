@@ -5,8 +5,8 @@ package imgconv
 
 import (
 	"image"
-	"image/png"
 	_ "image/jpeg"
+	"image/png"
 	"os"
 	"strings"
 )
