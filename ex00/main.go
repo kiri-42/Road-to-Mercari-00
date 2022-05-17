@@ -59,7 +59,7 @@ func getPaths(dir string) ([]string, error) {
 			return nil, errors.New("error: " + file.Name() + " is not a valid file")
 		}
 		path := filepath.Join(dir, file.Name())
-		if err := imgconv.CheckPng(path); err != nil {
+		if err := imgconv.CheckJpg(path); err != nil {
 			return nil, err
 		}
 		paths = append(paths, path)
