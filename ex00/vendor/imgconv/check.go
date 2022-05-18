@@ -2,9 +2,9 @@ package imgconv
 
 import (
 	"errors"
-	"strings"
-	"os"
 	"net/http"
+	"os"
+	"strings"
 )
 
 func checkFileContentType(path string) (bool, error) {

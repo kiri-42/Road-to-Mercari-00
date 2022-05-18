@@ -49,10 +49,12 @@ func checkArg(args []string) error {
 
 func getPaths(dir string) ([]string, error) {
 	var paths []string
+
 	err := filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
+
 		if d.IsDir() {
 			return nil
 		}
@@ -60,10 +62,12 @@ func getPaths(dir string) ([]string, error) {
 			return err
 		}
 		paths = append(paths, path)
+
 		return err
 	})
 	if err != nil {
 		return nil, err
 	}
+
 	return paths, nil
 }
