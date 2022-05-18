@@ -3,7 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
+	// "io/ioutil"
+	"io/fs"
 	"os"
 	"path/filepath"
 
@@ -48,21 +49,22 @@ func checkArg(args []string) error {
 }
 
 func getPaths(dir string) ([]string, error) {
-	files, err := ioutil.ReadDir(dir)
-	if err != nil {
-		return nil, err
-	}
-
 	var paths []string
-	for _, file := range files {
-		if file.IsDir() {
-			return nil, errors.New("error: " + file.Name() + " is not a valid file")
+	err := filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
 		}
-		path := filepath.Join(dir, file.Name())
+		if d.IsDir() {
+			return nil
+		}
 		if err := imgconv.CheckJpg(path); err != nil {
-			return nil, err
+			return err
 		}
 		paths = append(paths, path)
+		return err
+	})
+	if err != nil {
+		return nil, err
 	}
 	return paths, nil
 }
