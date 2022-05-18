@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	// "io/ioutil"
 	"io/fs"
 	"os"
 	"path/filepath"
