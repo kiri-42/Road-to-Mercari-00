@@ -4,14 +4,16 @@
 package imgconv
 
 import (
+	"errors"
 	"image"
-	_ "image/jpeg"
+	"image/gif"
+	"image/jpeg"
 	"image/png"
 	"os"
 )
 
 type filePath struct {
-	in string
+	in  string
 	out string
 }
 
@@ -45,16 +47,31 @@ func Convert(path, iExt, oExt string) (err error) {
 	if err != nil {
 		return err
 	}
-	defer func () {
+	defer func() {
 		if e := f2.Close(); e != nil {
 			err = e
 		}
 	}()
 
-	// 画像オブジェクトをpng形式にエンコード
-	err = png.Encode(f2, img)
-	if err != nil {
-		return err
+	// 画像オブジェクトをエンコード
+	switch oExt {
+	case ".jpeg", ".jpg":
+		err = jpeg.Encode(f2, img, nil)
+		if err != nil {
+			return err
+		}
+	case ".gif":
+		err = gif.Encode(f2, img, nil)
+		if err != nil {
+			return err
+		}
+	case ".png":
+		err = png.Encode(f2, img)
+		if err != nil {
+			return err
+		}
+	default:
+		return errors.New("error: " + oExt + "is not a valid extension")
 	}
 
 	return nil
