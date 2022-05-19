@@ -42,7 +42,7 @@ func checkArg(args []string) error {
 
 	dir := args[1]
 	if f, err := os.Stat(dir); os.IsNotExist(err) || !f.IsDir() {
-		return errors.New("error: " + dir + ": no such file")
+		return errors.New("error: " + dir + ": no such dir")
 	}
 	return nil
 }
