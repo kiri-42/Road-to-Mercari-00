@@ -6,14 +6,14 @@ package imgconv
 import (
 	"errors"
 	"image"
+	"image/gif"
 	"image/jpeg"
 	"image/png"
-	"image/gif"
 	"os"
 )
 
 type filePath struct {
-	in string
+	in  string
 	out string
 }
 
@@ -47,7 +47,7 @@ func Convert(path, iExt, oExt string) (err error) {
 	if err != nil {
 		return err
 	}
-	defer func () {
+	defer func() {
 		if e := f2.Close(); e != nil {
 			err = e
 		}
