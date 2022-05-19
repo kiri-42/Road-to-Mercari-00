@@ -2,8 +2,8 @@ package imgconv
 
 import (
 	"errors"
-	"net/http"
-	"os"
+	// "net/http"
+	// "os"
 	"strings"
 )
 

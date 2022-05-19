@@ -17,12 +17,12 @@ type filePath struct {
 }
 
 // jpgファイルをpngファイルに変換する関数
-func ConvertJpgToPng(jpg string) error {
+func ConvertJpgToPng(jpg string) (err error) {
 	if err := CheckJpg(jpg); err != nil {
 		return err
 	}
 
-	fp := new(filePath)
+	var fp filePath
 	fp.jpg = jpg
 
 	// 変換元ファイルを開く
@@ -46,7 +46,11 @@ func ConvertJpgToPng(jpg string) error {
 	if err != nil {
 		return err
 	}
-	defer f2.Close()
+	defer func () {
+		if e := f2.Close(); e != nil {
+			err = e
+		}
+	}()
 
 	// 画像オブジェクトをpng形式にエンコード
 	err = png.Encode(f2, img)
