@@ -58,12 +58,10 @@ func getPaths(dir string) ([]string, error) {
 		if d.IsDir() {
 			return nil
 		}
-		if err := imgconv.CheckJpg(path); err != nil {
-			return err
-		}
+
 		paths = append(paths, path)
 
-		return err
+		return nil
 	})
 	if err != nil {
 		return nil, err

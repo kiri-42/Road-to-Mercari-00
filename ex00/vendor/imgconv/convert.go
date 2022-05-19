@@ -18,6 +18,10 @@ type filePath struct {
 
 // jpgファイルをpngファイルに変換する関数
 func ConvertJpgToPng(jpg string) error {
+	if err := CheckJpg(jpg); err != nil {
+		return err
+	}
+
 	fp := new(filePath)
 	fp.jpg = jpg
 
