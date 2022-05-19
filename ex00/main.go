@@ -30,7 +30,6 @@ func main() {
 	for _, path := range paths {
 		if err := imgconv.ConvertJpgToPng(path); err != nil {
 			fmt.Fprintln(os.Stderr, err.Error())
-			return
 		}
 	}
 }
