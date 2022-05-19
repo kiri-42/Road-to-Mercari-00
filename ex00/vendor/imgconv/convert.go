@@ -15,6 +15,7 @@ type filePath struct {
 	out string
 }
 
+// 画像の拡張子を変換する関数
 func Convert(path, iExt, oExt string) (err error) {
 	var fp filePath
 	fp.in = path
