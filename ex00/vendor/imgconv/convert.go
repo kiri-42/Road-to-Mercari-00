@@ -8,7 +8,8 @@ import (
 	_ "image/jpeg"
 	"image/png"
 	"os"
-	"strings"
+	// "strings"
+	// "path/filepath"
 )
 
 type filePath struct {
@@ -39,7 +40,8 @@ func ConvertJpgToPng(jpg string) (err error) {
 	}
 
 	// 変換先のファイルパスを取得
-	fp.png = convertExtension(fp.jpg, "jpg", "png")
+	// fp.png = convertExtension(fp.jpg, "jpg", "png")
+	fp.png = replaceExt(fp.jpg, ".jpg", ".png")
 
 	// 変換先のファイルを作成
 	f2, err := os.Create(fp.png)
@@ -61,7 +63,11 @@ func ConvertJpgToPng(jpg string) (err error) {
 	return nil
 }
 
-func convertExtension(path, fromExt, toExt string) string {
-	r := strings.Replace(reverse(path), reverse(fromExt), reverse(toExt), 1)
-	return reverse(r)
+func replaceExt(filePath, from, to string) string {
+	return filePath[:len(filePath)-len(from)] + to
 }
+
+// func convertExtension(path, fromExt, toExt string) string {
+// 	r := strings.Replace(reverse(path), reverse(fromExt), reverse(toExt), 1)
+// 	return reverse(r)
+// }
