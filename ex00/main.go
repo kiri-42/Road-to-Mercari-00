@@ -28,7 +28,7 @@ func main() {
 
 	// 画像変換処理
 	for _, path := range paths {
-		if err := imgconv.ConvertJpgToPng(path); err != nil {
+		if err := imgconv.Convert(path, ".jpg", ".png"); err != nil {
 			fmt.Fprintln(os.Stderr, err.Error())
 		}
 	}

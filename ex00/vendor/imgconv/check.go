@@ -33,8 +33,8 @@ import (
 // }
 
 // 引数の拡張子がjpgか確認する関数
-func CheckJpg(path string) error {
-	if !strings.HasSuffix(path, "jpg") {
+func CheckExt(path, ext string) error {
+	if !strings.HasSuffix(path, ext) {
 		return errors.New("error: " + path + " is not a valid file")
 	}
 
