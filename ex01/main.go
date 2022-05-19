@@ -13,7 +13,7 @@ import (
 
 func main() {
 	var (
-		ext = flag.String("e", ".jpeg", "Specify the extension")
+		ext = flag.String("e", ".png", "Specify the extension")
 	)
 	flag.Parse()
 
